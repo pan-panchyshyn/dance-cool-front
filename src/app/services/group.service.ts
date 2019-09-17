@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../models/User';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
 import { BaseService } from './base.service';
+import { User } from '../models/User';
+import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class GroupService {
   constructor(private http: HttpClient, private baseService: BaseService) {}
-
   url = this.baseService.getRESTUrl();
 
   getGroupStudents(groupId: number): Observable<User[]> {
@@ -19,7 +18,7 @@ export class UserService {
       .get<User[]>(url)
       .pipe(
         tap(
-          _ =>
+          () =>
             this.baseService.log(
               `recieved ustudents of group with id ${groupId}`
             ),
