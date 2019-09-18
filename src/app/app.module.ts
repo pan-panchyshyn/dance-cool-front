@@ -7,7 +7,10 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { GuestPageComponent } from './components/guest-page/guest-page.component';
 import { TittleGuestPageComponent } from './components/guest-page/tittle-guest-page/tittle-guest-page.component';
-import { GroupPageComponent } from './components/group-page/group-page.component';
+import { GroupInfoComponent } from './components/group-admin/group-info/group-info.component';
+import { GroupListComponent } from './components/group-admin/group-list/group-list.component';
+import { FormsModule } from '@angular/forms';
+import { GroupAdminComponent } from './components/group-admin/group-admin.component';
 
 @NgModule({
   declarations: [
@@ -16,9 +19,11 @@ import { GroupPageComponent } from './components/group-page/group-page.component
     FooterComponent,
     GuestPageComponent,
     TittleGuestPageComponent,
-    GroupPageComponent
+    GroupInfoComponent,
+    GroupListComponent,
+    GroupAdminComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })

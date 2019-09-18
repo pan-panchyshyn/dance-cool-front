@@ -1,0 +1,8 @@
+.flex-container {
+  display: flex;
+}
+
+.flex-container > div {
+  margin: 20px;
+  border: 1px solid black;
+}

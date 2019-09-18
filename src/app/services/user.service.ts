@@ -12,21 +12,4 @@ export class UserService {
   constructor(private http: HttpClient, private baseService: BaseService) {}
 
   url = this.baseService.getRESTUrl();
-
-  getGroupStudents(groupId: number): Observable<User[]> {
-    const url = `${this.url}/api/groups/${groupId}/users/`;
-    return this.http
-      .get<User[]>(url)
-      .pipe(
-        tap(
-          _ =>
-            this.baseService.log(
-              `recieved ustudents of group with id ${groupId}`
-            ),
-          catchError(
-            this.baseService.handleError<User[]>('getGroupStudents', [])
-          )
-        )
-      );
-  }
 }

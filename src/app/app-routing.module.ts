@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { GuestPageComponent } from './components/guest-page/guest-page.component';
-import { GroupPageComponent } from './components/group-page/group-page.component';
+import { GroupListComponent } from './components/group-admin/group-list/group-list.component';
 
 const routes: Routes = [
   { path: '', component: GuestPageComponent },
-  { path: 'groups', component: GroupPageComponent },
-  { path: 'group/:groupId', component: GroupPageComponent }
+  { path: 'groups', component: GroupListComponent }
 ];
 
 @NgModule({
