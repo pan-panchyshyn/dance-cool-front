@@ -21,7 +21,7 @@ export class GroupListComponent implements OnInit {
     console.log(this.groups);
   }
 
-  getGroupId() {
-    this.groupService.groupId.next(this.groupId);
+  getGroupId(groupId) {
+    this.groupService.groupId.next(groupId);
   }
 }

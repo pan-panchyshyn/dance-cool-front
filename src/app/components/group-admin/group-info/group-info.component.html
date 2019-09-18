@@ -1,6 +1,9 @@
-<div>
-  <ul class="list-group">
-    <li class="list-group-item" *ngFor="let num of students">
-      {{num.firstName}}</li>
-  </ul>
-</div>
+<div>{{groupInfo.groupDirection}} {{groupInfo.groupLevel}}</div>
+<div>Наставники</div>
+<div>{{groupInfo.primaryMentorFirstName}} {{groupInfo.primaryMentorLastName}}</div>
+<div>{{groupInfo.secondaryMentorFirstName}} {{groupInfo.secondaryMentorLastName}}</div>
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let student of students">
+    {{student.firstName}} {{student.lastName}}</li>
+</ul>

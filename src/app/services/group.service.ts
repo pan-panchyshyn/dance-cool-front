@@ -20,6 +20,11 @@ export class GroupService {
     return this.http.get<User[]>(url);
   }
 
+  getGroupInfo(groupId: number): Observable<DanceGroup> {
+    const url = `${this.url}/api/groups/${groupId}`;
+    return this.http.get<DanceGroup>(url);
+  }
+
   getAllGroups(): Observable<DanceGroup[]> {
     const url = `${this.url}/api/groups`;
     return this.http.get<DanceGroup[]>(url);

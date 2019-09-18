@@ -1,5 +1,3 @@
-import { User } from './User';
-
 export class DanceGroup {
   groupId: number;
   groupDirection: string;
