@@ -11,6 +11,9 @@ import { GroupInfoComponent } from './components/group-admin/group-info/group-in
 import { GroupListComponent } from './components/group-admin/group-list/group-list.component';
 import { FormsModule } from '@angular/forms';
 import { GroupAdminComponent } from './components/group-admin/group-admin.component';
+import { ManagingStudentsComponent } from './components/group-admin/managing-students/managing-students.component';
+import { CreateStudentComponent } from './components/group-admin/managing-students/create-student/create-student.component';
+import { AddExistingStudentComponent } from './components/group-admin/managing-students/add-existing-student/add-existing-student.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { GroupAdminComponent } from './components/group-admin/group-admin.compon
     TittleGuestPageComponent,
     GroupInfoComponent,
     GroupListComponent,
-    GroupAdminComponent
+    GroupAdminComponent,
+    ManagingStudentsComponent,
+    CreateStudentComponent,
+    AddExistingStudentComponent
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, HttpClientModule],
   providers: [],

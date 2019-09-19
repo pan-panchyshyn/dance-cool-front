@@ -1,11 +1,17 @@
-<div className="card">
-  <div className="card-body">
-    <h5 className="card-title">{{groupInfo.groupDirection}} {{groupInfo.groupLevel}}</h5>
-    <div>Наставники</div>
-    <ul>
-      <li className="card-text">{{groupInfo.primaryMentorFirstName}} {{groupInfo.primaryMentorLastName}}</li>
-      <li className="card-text">{{groupInfo.secondaryMentorFirstName}} {{groupInfo.secondaryMentorLastName}}</li>
-    </ul>
+<div class="card" *ngIf="groupInfo">
+  <h5 class="card-title"> {{groupInfo.groupLevel}}</h5>
+  <div class="card-body">
+    <div class="flex-container">
+      <p>Наставники</p>
+      <ul>
+        <li class="card-text">{{groupInfo.primaryMentorFirstName}} {{groupInfo.primaryMentorLastName}}</li>
+        <li class="card-text">{{groupInfo.secondaryMentorFirstName}} {{groupInfo.secondaryMentorLastName}}</li>
+      </ul>
+      <div class="group-actions-container">
+        <button class="btn btn-light" (click)="openCreateStudentForm()">Додати нового студента</button>
+        <button class="btn btn-light" (click)="openAddExistingStudentForm()">Додати студента з іншої групи</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -25,3 +31,5 @@
     </tr>
   </tbody>
 </table>
+
+<!-- {{groupInfo.groupDirection}} -->

@@ -1,7 +1,10 @@
 .flex-container {
   display: flex;
+  margin-bottom: 20px;
 }
 
-.flex-container > div {
-  margin: 20px;
+.group-actions-container {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
 }

@@ -15,6 +15,9 @@ export class GroupService {
 
   groupId = new BehaviorSubject<number>(1);
 
+  addExistingStudentVisibility = new Subject<boolean>();
+  createStudentVisibility = new Subject<boolean>();
+
   getGroupStudents(groupId: number): Observable<User[]> {
     const url = `${this.url}/api/groups/${groupId}/users/`;
     return this.http.get<User[]>(url);

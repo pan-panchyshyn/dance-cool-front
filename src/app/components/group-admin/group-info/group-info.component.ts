@@ -12,7 +12,6 @@ export class GroupInfoComponent implements OnInit {
   @Input() groupId = 2;
 
   constructor(private groupService: GroupService) {}
-
   students: User[] = [];
   groupInfo: DanceGroup;
 
@@ -35,5 +34,13 @@ export class GroupInfoComponent implements OnInit {
         .getGroupInfo(value)
         .subscribe(data => (this.groupInfo = data));
     });
+  }
+
+  openCreateStudentForm() {
+    this.groupService.createStudentVisibility.next(true);
+  }
+
+  openAddExistingStudentForm() {
+    this.groupService.addExistingStudentVisibility.next(true);
   }
 }
