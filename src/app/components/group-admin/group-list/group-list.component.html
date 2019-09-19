@@ -1,12 +1,10 @@
-<div class="flex-container">
+<div>
   <div>
-    <ul>
-      <li *ngFor="let group of groups" (click)="getGroupId(group.groupId)" id="{{group.groupId}}">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-action" *ngFor="let group of groups"
+        (click)="getGroupId(group.groupId)" id="{{group.groupId}}">
         {{group.groupDirection}}
         {{group.groupLevel}}</li>
     </ul>
-  </div>
-  <div>
-    <app-group-info [groupId]="groupId"></app-group-info>
   </div>
 </div>

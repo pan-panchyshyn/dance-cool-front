@@ -8,7 +8,6 @@ import { DanceGroup } from 'src/app/models/DanceGroup';
   styleUrls: ['./group-list.component.css']
 })
 export class GroupListComponent implements OnInit {
-  groupId = 1;
   groups: DanceGroup[];
   constructor(private groupService: GroupService) {}
 
@@ -21,7 +20,7 @@ export class GroupListComponent implements OnInit {
     console.log(this.groups);
   }
 
-  getGroupId(groupId) {
+  getGroupId(groupId: number) {
     this.groupService.groupId.next(groupId);
   }
 }

@@ -8,12 +8,7 @@ import { GroupService } from 'src/app/services/group.service';
   styleUrls: ['./group-admin.component.css']
 })
 export class GroupAdminComponent implements OnInit {
-  groupId = 1;
-  constructor(private groupService: GroupService) {}
+  constructor() {}
 
   ngOnInit() {}
-
-  getGroupId() {
-    this.groupService.groupId.next(this.groupId);
-  }
 }

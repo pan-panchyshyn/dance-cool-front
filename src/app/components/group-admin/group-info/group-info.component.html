@@ -1,9 +1,27 @@
-<div>{{groupInfo.groupDirection}} {{groupInfo.groupLevel}}</div>
-<div>Наставники</div>
-<div>{{groupInfo.primaryMentorFirstName}} {{groupInfo.primaryMentorLastName}}</div>
-<div>{{groupInfo.secondaryMentorFirstName}} {{groupInfo.secondaryMentorLastName}}</div>
+<div className="card">
+  <div className="card-body">
+    <h5 className="card-title">{{groupInfo.groupDirection}} {{groupInfo.groupLevel}}</h5>
+    <div>Наставники</div>
+    <ul>
+      <li className="card-text">{{groupInfo.primaryMentorFirstName}} {{groupInfo.primaryMentorLastName}}</li>
+      <li className="card-text">{{groupInfo.secondaryMentorFirstName}} {{groupInfo.secondaryMentorLastName}}</li>
+    </ul>
+  </div>
+</div>
 
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let student of students">
-    {{student.firstName}} {{student.lastName}}</li>
-</ul>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Ім'я</th>
+      <th scope="col">Прізвище</th>
+      <th scope="col">Номер телефону</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students">
+      <td>{{student.firstName}}</td>
+      <td>{{student.lastName}}</td>
+      <td>{{student.phoneNumber}}</td>
+    </tr>
+  </tbody>
+</table>
