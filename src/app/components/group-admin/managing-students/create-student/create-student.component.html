@@ -1,1 +1,30 @@
-<p>add-new-student works!</p>
+<form (ngSubmit)="log()">
+  <div class="form-group">
+    <label for="firstName">Ім'я</label>
+    <input required [(ngModel)]="studentFirstName" #firstName="ngModel" name="firstName" pattern="[a-zA-Zа-яA-Я]*"
+      type="text" class="form-control">
+    <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+      <div *ngIf="firstName.errors.required">Введіть ім'я</div>
+      <div *ngIf="firstName.errors.pattern">Видаліть цифри</div>
+    </div>
+  </div>
+  <div class=" form-group">
+    <label for="lastName">Прізвище</label>
+    <input [(ngModel)]="studentLastName" #lastName="ngModel" id="lastName" name="lastName" required
+      pattern="[a-zA-Zа-яA-Я]*" type="text" class="form-control">
+    <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">
+      <div *ngIf="lastName.errors.required">Введіть прізвище</div>
+      <div *ngIf="lastName.errors.pattern">Видаліть цифри</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="phoneNumber">Номер телефону</label>
+    <input [(ngModel)]="studentPhoneNumber" #phoneNumber="ngModel" id="phoneNumber" name="phoneNumber" required
+      pattern="[+]*[0-9]{12}" type="text" class="form-control">
+    <div class="alert alert-danger" *ngIf="phoneNumber.touched && !phoneNumber.valid">
+      <div *ngIf="phoneNumber.errors.required">Введіть номер телефону</div>
+      <div *ngIf="phoneNumber.errors.pattern">Введіть коректний номер телефоу</div>
+    </div>
+  </div>
+  <button type="submit" [disabled]="!(firstName.valid && lastName.valid && phoneNumber.valid)">Submit</button>
+</form>
