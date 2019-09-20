@@ -9,8 +9,8 @@ import { GroupService } from 'src/app/services/group.service';
 export class ManagingStudentsComponent implements OnInit {
   constructor(private groupService: GroupService) {}
 
-  createStudentVisibility: boolean = false;
-  addExsitingStudentVisibility: boolean = false;
+  createStudentVisibility = false;
+  addExsitingStudentVisibility = false;
 
   ngOnInit() {
     this.groupService.createStudentVisibility.subscribe(value => {

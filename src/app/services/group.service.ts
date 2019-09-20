@@ -14,6 +14,7 @@ export class GroupService {
   url = this.baseService.getRESTUrl();
 
   groupId = new BehaviorSubject<number>(1);
+  onReloadStudent = new Subject();
 
   addExistingStudentVisibility = new Subject<boolean>();
   createStudentVisibility = new Subject<boolean>();

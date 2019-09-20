@@ -18,13 +18,16 @@ export class GroupInfoComponent implements OnInit {
   ngOnInit() {
     this.getStudents();
     this.getGroupInfo();
+    this.groupService.onReloadStudent.next();
   }
 
   getStudents() {
-    this.groupService.groupId.subscribe((value: number) => {
-      this.groupService
-        .getGroupStudents(value)
-        .subscribe(r => (this.students = r));
+    this.groupService.onReloadStudent.subscribe(() => {
+      this.groupService.groupId.subscribe((value: number) => {
+        this.groupService
+          .getGroupStudents(value)
+          .subscribe(r => (this.students = r));
+      });
     });
   }
 
