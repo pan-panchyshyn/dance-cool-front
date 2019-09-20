@@ -19,17 +19,17 @@ export class GroupService {
   createStudentVisibility = new Subject<boolean>();
 
   getGroupStudents(groupId: number): Observable<User[]> {
-    const url = `${this.url}/api/groups/${groupId}/users/`;
+    const url = `${this.url}api/groups/${groupId}/users/`;
     return this.http.get<User[]>(url);
   }
 
   getGroupInfo(groupId: number): Observable<DanceGroup> {
-    const url = `${this.url}/api/groups/${groupId}`;
+    const url = `${this.url}api/groups/${groupId}`;
     return this.http.get<DanceGroup>(url);
   }
 
   getAllGroups(): Observable<DanceGroup[]> {
-    const url = `${this.url}/api/groups`;
+    const url = `${this.url}api/groups`;
     return this.http.get<DanceGroup[]>(url);
   }
 }

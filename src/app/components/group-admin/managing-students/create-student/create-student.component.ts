@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/User';
+import { NewUserModel } from 'src/app/models/NewUserModel';
+import { GroupService } from 'src/app/services/group.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-create-student',
@@ -7,18 +9,21 @@ import { User } from 'src/app/models/User';
   styleUrls: ['./create-student.component.css']
 })
 export class CreateStudentComponent implements OnInit {
-  studentFirstName = '';
-  studentLastName = '';
-  studentPhoneNumber = '';
+  newStudentModel: NewUserModel = {
+    firstName: '',
+    lastName: '',
+    phoneNumber: ''
+  };
 
-  constructor() {}
+  constructor(
+    private groupService: GroupService,
+    private userService: UserService
+  ) {}
 
-  log() {
-    console.log(
-      this.studentFirstName,
-      this.studentLastName,
-      this.studentPhoneNumber
-    );
+  addNewStudent() {
+    this.userService
+      .addNewUser(this.newStudentModel)
+      .subscribe(model => console.log(model));
   }
 
   ngOnInit() {}

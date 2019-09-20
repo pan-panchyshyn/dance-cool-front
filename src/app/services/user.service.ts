@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { User } from '../models/User';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
 import { BaseService } from './base.service';
 import { GroupService } from './group.service';
+import { NewUserModel } from '../models/NewUserModel';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,10 @@ export class UserService {
     private groupService: GroupService
   ) {}
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   userId = new Subject<number>();
 
   url = this.baseService.getRESTUrl();
@@ -24,7 +28,12 @@ export class UserService {
     primMentorId: number,
     secMentorId = 0
   ): Observable<User[]> {
-    const url = `${this.url}/groups/mentors/not-in-group`;
+    const url = `${this.url}groups/mentors/not-in-group`;
     return this.http.get<User[]>(url);
+  }
+
+  addNewUser(newUserModel: NewUserModel) {
+    const url = `${this.url}api/users/`;
+    return this.http.post<NewUserModel>(url, newUserModel, this.httpOptions);
   }
 }

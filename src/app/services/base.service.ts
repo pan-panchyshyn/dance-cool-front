@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BaseService {
   getRESTUrl(): string {
-    return 'http://localhost:59993';
+    return 'http://localhost:59993/';
   }
 
   handleError<T>(operation = 'operation', result?: T) {
