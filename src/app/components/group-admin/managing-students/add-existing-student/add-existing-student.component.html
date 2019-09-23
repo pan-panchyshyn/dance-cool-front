@@ -8,7 +8,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let student of studentsNotInGroup">
+      <tr *ngFor="let student of studentsNotInGroup" (click)="selectStudent(student?.id)"
+        [class.active]="student.id===studentIdToAdd">
         <td>{{student.firstName}}</td>
         <td>{{student.lastName}}</td>
         <td>{{student.phoneNumber}}</td>
@@ -16,5 +17,7 @@
     </tbody>
   </table>
   <br />
-  <button type="button" class="btn btn-success">Додати студента</button>
+  <button type="button" class="btn btn-success" [disabled]="!isStudentSelected" (click)="addStudentToGroup()">Додати
+    студента</button>
+  <button type="button" class="btn btn-danger" (click)="close()">Закрити</button>
 </div>

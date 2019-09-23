@@ -1,4 +1,4 @@
 export class UserGroup {
-  userId: number;
+  studentId: number;
   groupId: number;
 }

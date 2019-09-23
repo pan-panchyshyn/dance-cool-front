@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GroupService } from 'src/app/services/group.service';
-import { User } from 'src/app/models/User';
 import { UserWebService } from 'src/app/web-services/user.web-service';
+import { NewUserModel } from 'src/app/models/NewUserModel';
 
 @Component({
   selector: 'app-create-student',
@@ -10,7 +10,7 @@ import { UserWebService } from 'src/app/web-services/user.web-service';
 })
 export class CreateStudentComponent implements OnInit {
   groupId: number;
-  newStudentModel: User = {
+  newStudentModel: NewUserModel = {
     firstName: '',
     lastName: '',
     phoneNumber: ''
@@ -33,5 +33,9 @@ export class CreateStudentComponent implements OnInit {
       .subscribe(() => {
         this.groupService.onReloadStudent.next(), console.error();
       });
+  }
+
+  close(): void {
+    this.groupService.createStudentVisibility.next(false);
   }
 }

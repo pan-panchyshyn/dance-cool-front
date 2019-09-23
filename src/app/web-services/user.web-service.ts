@@ -27,7 +27,10 @@ export class UserWebService extends BaseWebService {
       .pipe(tap((newUser: User) => this.userId.next(newUser.id)));
   }
 
-  addNewStudentToGroup(newUser: User, groupId: number): Observable<User> {
+  addNewStudentToGroup(
+    newUser: NewUserModel,
+    groupId: number
+  ): Observable<User> {
     const url = `${this.baseUrl}api/group/${groupId}/new-user/`;
 
     return this.http
@@ -47,7 +50,7 @@ export class UserWebService extends BaseWebService {
   ): Observable<UserGroup> {
     const url = `${this.baseUrl}api/group/user/`;
     const connection: UserGroup = {
-      userId: studentId,
+      studentId,
       groupId
     };
     return this.http

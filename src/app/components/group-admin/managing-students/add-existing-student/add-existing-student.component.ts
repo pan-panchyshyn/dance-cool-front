@@ -11,9 +11,10 @@ import { GroupService } from 'src/app/services/group.service';
   styleUrls: ['./add-existing-student.component.css']
 })
 export class AddExistingStudentComponent implements OnInit {
-  studentToAdd: User;
+  studentIdToAdd: number;
   studentsNotInGroup: User[];
   groupId: number;
+  isStudentSelected = false;
   constructor(
     private route: ActivatedRoute,
     private groupWebService: GroupWebService,
@@ -28,7 +29,7 @@ export class AddExistingStudentComponent implements OnInit {
     });
   }
 
-  getStudentsNotInGroup() {
+  private getStudentsNotInGroup(): void {
     this.route.params.subscribe(params => {
       const groupId = +params.groupId;
       this.groupWebService
@@ -37,12 +38,26 @@ export class AddExistingStudentComponent implements OnInit {
     });
   }
 
-  addStudentToGroup() {
+  addStudentToGroup(): void {
     this.route.params.subscribe(params => {
       const groupId = +params.groupId;
       this.userService
-        .addExistingStudentToGroup(this.studentToAdd.id, groupId)
+        .addExistingStudentToGroup(this.studentIdToAdd, groupId)
         .subscribe(() => this.groupService.onReloadStudent.next());
     });
+  }
+
+  selectStudent(selectedStudentId: number) {
+    if (selectedStudentId === this.studentIdToAdd) {
+      this.studentIdToAdd = 0;
+      this.isStudentSelected = false;
+    } else {
+      this.studentIdToAdd = selectedStudentId;
+      this.isStudentSelected = true;
+    }
+  }
+
+  close(): void {
+    this.groupService.addExistingStudentVisibility.next(false);
   }
 }

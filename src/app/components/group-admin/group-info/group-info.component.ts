@@ -23,9 +23,11 @@ export class GroupInfoComponent implements OnInit {
   ngOnInit() {
     const groupIdSubj = this.groupSyncService.groupIdSubj;
 
-    this.activatedRoute.params.subscribe(params => {
-      const groupId = +params.groupId;
-      groupIdSubj.next(groupId);
+    this.groupSyncService.onReloadStudent.subscribe(() => {
+      this.activatedRoute.params.subscribe(params => {
+        const groupId = +params.groupId;
+        groupIdSubj.next(groupId);
+      });
     });
 
     groupIdSubj.subscribe(groupId => {
@@ -39,11 +41,9 @@ export class GroupInfoComponent implements OnInit {
   }
 
   private loadStudents(groupId: number): void {
-    this.groupSyncService.onReloadStudent.subscribe(() => {
-      this.groupWebService
-        .getGroupStudents(groupId)
-        .subscribe(students => (this.students = students));
-    });
+    this.groupWebService
+      .getGroupStudents(groupId)
+      .subscribe(students => (this.students = students));
   }
 
   private loadGroupInfo(groupId: number) {

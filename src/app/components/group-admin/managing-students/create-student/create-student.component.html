@@ -26,6 +26,9 @@
       <div *ngIf="phoneNumber.errors.pattern">Введіть коректний номер телефоу</div>
     </div>
   </div>
-  <button class="btn btn-success" type="submit"
-    [disabled]="!(firstName.valid && lastName.valid && phoneNumber.valid)">Submit</button>
+  <div>
+    <button class="btn btn-success" type="submit"
+      [disabled]="!(firstName.valid && lastName.valid && phoneNumber.valid)">Додати</button>
+    <button class="btn btn-danger" type="button" (click)="close()">Закрити</button>
+  </div>
 </form>
