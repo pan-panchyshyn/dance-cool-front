@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { GroupService } from 'src/app/services/group.service';
+
 import { DanceGroup } from 'src/app/models/DanceGroup';
+import { GroupWebService } from 'src/app/web-services/group.web-service';
 
 @Component({
   selector: 'app-group-list',
-  templateUrl: './group-list.component.html',
-  styleUrls: ['./group-list.component.css']
+  templateUrl: './group-list.component.html'
 })
 export class GroupListComponent implements OnInit {
   groups: DanceGroup[];
-  constructor(private groupService: GroupService) {}
+
+  constructor(private groupWebService: GroupWebService) {}
 
   ngOnInit() {
-    this.getAllGroups();
+    this.loadGroups();
   }
 
-  getAllGroups() {
-    this.groupService.getAllGroups().subscribe(data => (this.groups = data));
-    console.log(this.groups);
+  private loadGroups(): void {
+    this.groupWebService.getGroups().subscribe(data => (this.groups = data));
   }
 }

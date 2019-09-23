@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GroupService } from 'src/app/services/group.service';
 import { DanceGroup } from '../../../models/DanceGroup';
 import { User } from '../../../models/User';
 import { ActivatedRoute } from '@angular/router';
+import { GroupWebService } from 'src/app/web-services/group.web-service';
 
 @Component({
   selector: 'app-group-info',
@@ -10,47 +11,52 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./group-info.component.css']
 })
 export class GroupInfoComponent implements OnInit {
-  groupId: number;
   constructor(
-    private groupService: GroupService,
-    private route: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private groupWebService: GroupWebService,
+    private groupSyncService: GroupService
   ) {}
+
   students: User[] = [];
   groupInfo: DanceGroup;
 
   ngOnInit() {
-    this.getStudents();
-    this.getGroupInfo();
-    this.groupService.onReloadStudent.next();
+    const groupIdSubj = this.groupSyncService.groupIdSubj;
+
+    this.activatedRoute.params.subscribe(params => {
+      const groupId = +params.groupId;
+      groupIdSubj.next(groupId);
+    });
+
+    groupIdSubj.subscribe(groupId => {
+      this.loadStudents(groupId);
+      this.loadGroupInfo(groupId);
+    });
+
+    this.groupSyncService.onReloadStudent.next();
+    this.groupSyncService.addExistingStudentVisibility.next(false);
+    this.groupSyncService.createStudentVisibility.next(false);
   }
 
-  getStudents() {
-    this.groupService.onReloadStudent.subscribe(() => {
-      this.route.params.subscribe(params => {
-        this.groupId = +params['groupId'];
-        this.groupService
-          .getGroupStudents(this.groupId)
-          .subscribe(data => (this.students = data));
-      });
+  private loadStudents(groupId: number): void {
+    this.groupSyncService.onReloadStudent.subscribe(() => {
+      this.groupWebService
+        .getGroupStudents(groupId)
+        .subscribe(students => (this.students = students));
     });
   }
 
-  getGroupInfo() {
-    this.groupService.onReloadStudent.subscribe(() => {
-      this.route.params.subscribe(params => {
-        this.groupId = +params['groupId'];
-        this.groupService
-          .getGroupInfo(this.groupId)
-          .subscribe(data => (this.groupInfo = data));
-      });
-    });
+  private loadGroupInfo(groupId: number) {
+    this.groupWebService
+      .getGroupInfo(groupId)
+      .subscribe(data => (this.groupInfo = data));
   }
 
   openCreateStudentForm() {
-    this.groupService.createStudentVisibility.next(true);
+    this.groupSyncService.createStudentVisibility.next(true);
   }
 
   openAddExistingStudentForm() {
-    this.groupService.addExistingStudentVisibility.next(true);
+    this.groupSyncService.addExistingStudentVisibility.next(true);
   }
 }

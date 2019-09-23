@@ -5,10 +5,12 @@ import { HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class BaseService {
-  getRESTUrl(): string {
-    return 'http://localhost:59993/';
-  }
+export class BaseWebService {
+  baseUrl: string = 'http://localhost:59993/';
+
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -21,6 +23,4 @@ export class BaseService {
   log(message: string) {
     console.log(message);
   }
-
-  constructor() {}
 }

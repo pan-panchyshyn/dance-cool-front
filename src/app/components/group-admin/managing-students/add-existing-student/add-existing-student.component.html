@@ -1,1 +1,20 @@
-<p>add-existing-student works!</p>
+<div>
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th>Ім'я</th>
+        <th>Прізвище</th>
+        <th>Номер телефону</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of studentsNotInGroup">
+        <td>{{student.firstName}}</td>
+        <td>{{student.lastName}}</td>
+        <td>{{student.phoneNumber}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br />
+  <button type="button" class="btn btn-success">Додати студента</button>
+</div>

@@ -1,8 +1,9 @@
 <div>
   <ul class="list-group">
-    <li class="list-group-item list-group-item-action" *ngFor="let group of groups" id="{{group.groupId}}"><a
-        routerLink="/groups/{{group.groupId}}">
+    <li class="list-group-item list-group-item-action" *ngFor="let group of groups">
+      <a routerLink="/groups/{{group.groupId}}" routerLinkActive="active-link">
         {{group.groupDirection}}
-        {{group.groupLevel}}</a></li>
+        {{group.groupLevel}}
+      </a></li>
   </ul>
 </div>

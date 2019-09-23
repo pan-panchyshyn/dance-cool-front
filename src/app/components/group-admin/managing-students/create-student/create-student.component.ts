@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NewUserModel } from 'src/app/models/NewUserModel';
 import { GroupService } from 'src/app/services/group.service';
-import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/User';
-import { ActivatedRoute } from '@angular/router';
+import { UserWebService } from 'src/app/web-services/user.web-service';
 
 @Component({
   selector: 'app-create-student',
@@ -11,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./create-student.component.css']
 })
 export class CreateStudentComponent implements OnInit {
+  groupId: number;
   newStudentModel: User = {
     firstName: '',
     lastName: '',
@@ -18,21 +17,21 @@ export class CreateStudentComponent implements OnInit {
   };
 
   constructor(
-    private route: ActivatedRoute,
     private groupService: GroupService,
-    private userService: UserService
+    private userWebService: UserWebService
   ) {}
 
-  addNewStudentToGroup(): void {
-    this.route.params.subscribe(params => {
-      const groupId = +params['groupId'];
-      const saveUserObservable = this.userService
-        .addNewStudentToGroup(this.newStudentModel, groupId)
-        .subscribe(() => {
-          this.groupService.onReloadStudent.next(), console.error();
-        });
-    });
+  ngOnInit() {
+    this.groupService.groupIdSubj.subscribe(
+      groupId => (this.groupId = groupId)
+    );
   }
 
-  ngOnInit() {}
+  addNewStudentToGroup(): void {
+    this.userWebService
+      .addNewStudentToGroup(this.newStudentModel, this.groupId)
+      .subscribe(() => {
+        this.groupService.onReloadStudent.next(), console.error();
+      });
+  }
 }
