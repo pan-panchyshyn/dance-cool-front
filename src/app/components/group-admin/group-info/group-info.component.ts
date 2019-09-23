@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { GroupService } from 'src/app/services/group.service';
 import { DanceGroup } from '../../../models/DanceGroup';
 import { User } from '../../../models/User';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-group-info',
@@ -9,9 +10,11 @@ import { User } from '../../../models/User';
   styleUrls: ['./group-info.component.css']
 })
 export class GroupInfoComponent implements OnInit {
-  @Input() groupId = 2;
-
-  constructor(private groupService: GroupService) {}
+  groupId: number;
+  constructor(
+    private groupService: GroupService,
+    private route: ActivatedRoute
+  ) {}
   students: User[] = [];
   groupInfo: DanceGroup;
 
@@ -23,19 +26,23 @@ export class GroupInfoComponent implements OnInit {
 
   getStudents() {
     this.groupService.onReloadStudent.subscribe(() => {
-      this.groupService.groupId.subscribe((value: number) => {
+      this.route.params.subscribe(params => {
+        this.groupId = +params['groupId'];
         this.groupService
-          .getGroupStudents(value)
-          .subscribe(r => (this.students = r));
+          .getGroupStudents(this.groupId)
+          .subscribe(data => (this.students = data));
       });
     });
   }
 
   getGroupInfo() {
-    this.groupService.groupId.subscribe((value: number) => {
-      this.groupService
-        .getGroupInfo(value)
-        .subscribe(data => (this.groupInfo = data));
+    this.groupService.onReloadStudent.subscribe(() => {
+      this.route.params.subscribe(params => {
+        this.groupId = +params['groupId'];
+        this.groupService
+          .getGroupInfo(this.groupId)
+          .subscribe(data => (this.groupInfo = data));
+      });
     });
   }
 

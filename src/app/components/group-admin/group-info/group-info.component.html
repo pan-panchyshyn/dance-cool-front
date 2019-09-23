@@ -1,35 +1,43 @@
-<div class="card" *ngIf="groupInfo">
-  <h5 class="card-title"> {{groupInfo.groupLevel}}</h5>
-  <div class="card-body">
-    <div class="flex-container">
-      <p>Наставники</p>
-      <ul>
-        <li class="card-text">{{groupInfo.primaryMentorFirstName}} {{groupInfo.primaryMentorLastName}}</li>
-        <li class="card-text">{{groupInfo.secondaryMentorFirstName}} {{groupInfo.secondaryMentorLastName}}</li>
-      </ul>
-      <div class="group-actions-container">
-        <button class="btn btn-light" (click)="openCreateStudentForm()">Додати нового студента</button>
-        <button class="btn btn-light" (click)="openAddExistingStudentForm()">Додати студента з іншої групи</button>
+<div class="row">
+  <div class="col-5">
+    <div class="card" *ngIf="groupInfo">
+      <h5 class="card-title"> {{groupInfo.groupLevel}}</h5>
+      <div class="card-body">
+        <div class="flex-container">
+          <p>Наставники</p>
+          <ul>
+            <li class="card-text">{{groupInfo.primaryMentorFirstName}} {{groupInfo.primaryMentorLastName}}</li>
+            <li class="card-text">{{groupInfo.secondaryMentorFirstName}} {{groupInfo.secondaryMentorLastName}}</li>
+          </ul>
+          <div class="group-actions-container">
+            <button class="btn btn-light" (click)="openCreateStudentForm()">Додати нового студента</button>
+            <button class="btn btn-light" (click)="openAddExistingStudentForm()">Додати студента з іншої групи</button>
+          </div>
+        </div>
       </div>
     </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Ім'я</th>
+          <th scope="col">Прізвище</th>
+          <th scope="col">Номер телефону</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students">
+          <td>{{student.firstName}}</td>
+          <td>{{student.lastName}}</td>
+          <td>{{student.phoneNumber}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-3">
+    <app-managing-students>
+    </app-managing-students>
   </div>
 </div>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Ім'я</th>
-      <th scope="col">Прізвище</th>
-      <th scope="col">Номер телефону</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let student of students">
-      <td>{{student.firstName}}</td>
-      <td>{{student.lastName}}</td>
-      <td>{{student.phoneNumber}}</td>
-    </tr>
-  </tbody>
-</table>
 
 <!-- {{groupInfo.groupDirection}} -->

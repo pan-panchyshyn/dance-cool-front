@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, BehaviorSubject } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { BaseService } from './base.service';
 import { User } from '../models/User';
-import { tap, catchError } from 'rxjs/operators';
 import { DanceGroup } from '../models/DanceGroup';
 
 @Injectable({
@@ -13,7 +12,6 @@ export class GroupService {
   constructor(private http: HttpClient, private baseService: BaseService) {}
   url = this.baseService.getRESTUrl();
 
-  groupId = new BehaviorSubject<number>(1);
   onReloadStudent = new Subject();
 
   addExistingStudentVisibility = new Subject<boolean>();

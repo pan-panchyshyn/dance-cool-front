@@ -1,10 +1,8 @@
 <div>
-  <div>
-    <ul class="list-group">
-      <li class="list-group-item list-group-item-action" *ngFor="let group of groups"
-        (click)="getGroupId(group.groupId)" id="{{group.groupId}}">
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-action" *ngFor="let group of groups" id="{{group.groupId}}"><a
+        routerLink="/groups/{{group.groupId}}">
         {{group.groupDirection}}
-        {{group.groupLevel}}</li>
-    </ul>
-  </div>
+        {{group.groupLevel}}</a></li>
+  </ul>
 </div>

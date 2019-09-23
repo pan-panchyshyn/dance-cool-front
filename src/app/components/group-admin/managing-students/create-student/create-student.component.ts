@@ -3,6 +3,7 @@ import { NewUserModel } from 'src/app/models/NewUserModel';
 import { GroupService } from 'src/app/services/group.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/User';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-student',
@@ -17,21 +18,20 @@ export class CreateStudentComponent implements OnInit {
   };
 
   constructor(
+    private route: ActivatedRoute,
     private groupService: GroupService,
     private userService: UserService
   ) {}
 
   addNewStudentToGroup(): void {
-    const saveUserObservable = this.userService
-      .addNewStudentToGroup(
-        this.newStudentModel,
-        this.groupService.groupId.value
-      )
-      .subscribe(() => {
-        this.groupService.onReloadStudent.next(), console.error();
-      });
-
-    // on success push event to the sync service
+    this.route.params.subscribe(params => {
+      const groupId = +params['groupId'];
+      const saveUserObservable = this.userService
+        .addNewStudentToGroup(this.newStudentModel, groupId)
+        .subscribe(() => {
+          this.groupService.onReloadStudent.next(), console.error();
+        });
+    });
   }
 
   ngOnInit() {}

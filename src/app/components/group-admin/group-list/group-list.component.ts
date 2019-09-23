@@ -19,8 +19,4 @@ export class GroupListComponent implements OnInit {
     this.groupService.getAllGroups().subscribe(data => (this.groups = data));
     console.log(this.groups);
   }
-
-  getGroupId(groupId: number) {
-    this.groupService.groupId.next(groupId);
-  }
 }
