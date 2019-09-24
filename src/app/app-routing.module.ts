@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { GuestPageComponent } from './components/guest-page/guest-page.component';
-import { GroupAdminComponent } from './components/group-admin/group-admin.component';
-import { GroupInfoComponent } from './components/group-admin/group-info/group-info.component';
+import { GroupAdminComponent } from './group-admin/group-admin.component';
+import { GroupInfoComponent } from './group-admin/group-info/group-info.component';
 
 const routes: Routes = [
   { path: '', component: GuestPageComponent },

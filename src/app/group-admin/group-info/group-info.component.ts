@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { GroupService } from 'src/app/services/group.service';
-import { DanceGroup } from '../../../models/DanceGroup';
-import { User } from '../../../models/User';
+import { GroupService } from 'src/app/group-admin/services/group.service';
+import { DanceGroup } from '../../models/DanceGroup';
+import { User } from '../../models/User';
 import { ActivatedRoute } from '@angular/router';
 import { GroupWebService } from 'src/app/web-services/group.web-service';
 

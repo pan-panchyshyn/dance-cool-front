@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { UserWebService } from 'src/app/web-services/user.web-service';
 import { GroupWebService } from 'src/app/web-services/group.web-service';
-import { GroupService } from 'src/app/services/group.service';
+import { GroupService } from 'src/app/group-admin/services/group.service';
 
 @Component({
   selector: 'app-add-existing-student',

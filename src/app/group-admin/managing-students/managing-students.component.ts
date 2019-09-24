@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GroupService } from 'src/app/services/group.service';
+import { GroupService } from 'src/app/group-admin/services/group.service';
 
 @Component({
   selector: 'app-managing-students',
