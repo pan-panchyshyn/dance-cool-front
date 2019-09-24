@@ -9,6 +9,8 @@ import { GuestPageComponent } from './components/guest-page/guest-page.component
 import { TittleGuestPageComponent } from './components/guest-page/tittle-guest-page/tittle-guest-page.component';
 import { FormsModule } from '@angular/forms';
 import { GroupAdminModule } from './group-admin/group-admin.module';
+import { AttendanceModule } from './attendance/attendance.module';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -16,14 +18,16 @@ import { GroupAdminModule } from './group-admin/group-admin.module';
     NavBarComponent,
     FooterComponent,
     GuestPageComponent,
-    TittleGuestPageComponent
+    TittleGuestPageComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    GroupAdminModule
+    GroupAdminModule,
+    AttendanceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
