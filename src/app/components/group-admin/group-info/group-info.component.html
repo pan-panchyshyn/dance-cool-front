@@ -6,8 +6,8 @@
         <div class="flex-container">
           <p>Наставники</p>
           <ul>
-            <li class="card-text">{{groupInfo.primaryMentorFirstName}} {{groupInfo.primaryMentorLastName}}</li>
-            <li class="card-text">{{groupInfo.secondaryMentorFirstName}} {{groupInfo.secondaryMentorLastName}}</li>
+            <li class="card-text">{{groupInfo.primaryMentor.firstName}} {{groupInfo.primaryMentor.lastName}}</li>
+            <li class="card-text">{{groupInfo.secondaryMentor.firstName}} {{groupInfo.secondaryMentor.lastName}}</li>
           </ul>
           <div class="group-actions-container">
             <button class="btn btn-light" (click)="openCreateStudentForm()">Додати нового студента</button>
@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <table class="table">
+    <table class="table table-sm">
       <thead>
         <tr>
           <th scope="col">Ім'я</th>
