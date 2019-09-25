@@ -8,6 +8,7 @@ import { CreateStudentComponent } from './managing-students/create-student/creat
 import { GroupAdminComponent } from './group-admin.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { GroupService } from './services/group.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     ManagingStudentsComponent,
     AddExistingStudentComponent,
     CreateStudentComponent
-  ]
+  ],
+  providers: [GroupService]
 })
 export class GroupAdminModule {}

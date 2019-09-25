@@ -14,7 +14,7 @@ export class AttendanceWebService extends BaseWebService {
     super();
   }
 
-  getLessonsForGroupInMonth(
+  getAttendancesForGroupInMonth(
     groupId: number,
     month: number
   ): Observable<Attendance[]> {
