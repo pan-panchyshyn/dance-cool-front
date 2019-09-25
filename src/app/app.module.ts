@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { GroupAdminModule } from './group-admin/group-admin.module';
 import { AttendanceModule } from './attendance/attendance.module';
 import { AdminComponent } from './components/admin/admin.component';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AdminComponent } from './components/admin/admin.component';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    MaterialModule,
     GroupAdminModule,
     AttendanceModule
   ],
