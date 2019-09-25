@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
+import { environment } from '../../environments/environment';
 import { User } from '../models/User';
 import { BaseWebService } from './base.web-service';
 import { GroupWebService } from './group.web-service';
@@ -20,8 +21,10 @@ export class UserWebService extends BaseWebService {
     super();
   }
 
+  private url = `${environment.apiUrl}user`;
+
   addNewUser(newUserModel: NewUserModel): Observable<User> {
-    const url = `${this.baseUrl}api/users/`;
+    const url = `${this.url}api/users/`;
     return this.http
       .post<User>(url, newUserModel, this.httpOptions)
       .pipe(tap((newUser: User) => this.userId.next(newUser.id)));
@@ -31,7 +34,7 @@ export class UserWebService extends BaseWebService {
     newUser: NewUserModel,
     groupId: number
   ): Observable<User> {
-    const url = `${this.baseUrl}api/group/${groupId}/new-user/`;
+    const url = `${this.url}api/group/${groupId}/new-user/`;
 
     return this.http
       .post<User>(url, newUser, this.httpOptions)
@@ -48,7 +51,7 @@ export class UserWebService extends BaseWebService {
     studentId: number,
     groupId: number
   ): Observable<UserGroup> {
-    const url = `${this.baseUrl}api/group/user/`;
+    const url = `${this.url}api/group/user/`;
     const connection: UserGroup = {
       studentId,
       groupId

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
+import { environment } from '../../environments/environment';
 import { BaseWebService } from './base.web-service';
 import { User } from '../models/User';
 import { DanceGroup } from '../models/DanceGroup';
@@ -11,7 +12,7 @@ import { DanceGroup } from '../models/DanceGroup';
   providedIn: 'root'
 })
 export class GroupWebService extends BaseWebService {
-  url = `${this.baseUrl}api/groups`;
+  url = `${environment.apiUrl}groups`;
 
   constructor(private http: HttpClient) {
     super();

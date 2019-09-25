@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
+import { environment } from '../../environments/environment';
 import { BaseWebService } from './base.web-service';
 import { Lesson } from '../models/Lesson';
 @Injectable({
   providedIn: 'root'
 })
 export class LessonWebService extends BaseWebService {
-  url = `${this.baseUrl}api/lessons`;
+  url = `${environment.apiUrl}lessons`;
   constructor(private http: HttpClient) {
     super();
   }

@@ -6,8 +6,6 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class BaseWebService {
-  baseUrl: string = 'http://localhost:59993/';
-
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };

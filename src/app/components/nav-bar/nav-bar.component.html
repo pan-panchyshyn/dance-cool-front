@@ -1,27 +1,31 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" routerLink=""><img src="../../assets/lasalsa-logo.png" /></a>
-  <ul class="navbar-nav flex-grow">
-    <li class="nav-item active">
-      <a class="nav-link" routerLink="">Головна</a>
-    </li>
-    <li class="nav-item active">
-      <a class="nav-link" href="#">Про нас</a>
-    </li>
-    <li class="nav-item active">
-      <a class="nav-link" href="#">Групи</a>
-    </li>
-    <li class="nav-item active">
-      <a class="nav-link" href="#">Розклад</a>
-    </li>
-    <li class="nav-item active">
-      <a class="nav-link" href="#">Наставники</a>
-    </li>
-    <li class="nav-item active">
-      <a class="nav-link" href="#">Контакти</a>
-    </li>
-    <li class="nav-item active">
-      <a class="nav-link" routerLink="admin">Адміністрування</a>
-    </li>
-
-  </ul>
+  <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse show" id="navbarNav" [ngClass]="{ 'show': navbarOpen }">
+    <ul class=" navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="">Головна</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Про нас</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Групи</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Розклад</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Наставники</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Контакти</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="admin">Адміністрування</a>
+      </li>
+    </ul>
+  </div>
 </nav>
