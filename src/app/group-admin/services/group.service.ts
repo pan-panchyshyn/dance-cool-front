@@ -2,9 +2,6 @@ import { Injectable } from '@angular/core';
 
 import { Subject, ReplaySubject } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
 export class GroupService {
   groupIdSubj = new ReplaySubject<number>(1);
 

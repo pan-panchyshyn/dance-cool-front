@@ -1,0 +1,20 @@
+<select id="groupSelect" class="form-control" [(ngModel)]="groupId" (change)="changeGroup(groupId)">
+  <option id="{{group.groupId}}" *ngFor="let group of groups" [value]="group.groupId">
+    {{group.groupDirection}} {{group.groupLevel}}
+  </option>
+</select>
+<table class="table-bordered">
+  <thead>
+    <th>
+      Студенти
+    </th>
+    <th *ngFor="let lesson of lessons">{{lesson.date | date:'MM.yyyy'}}</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let attendance of attendances">
+      <td>{{attendance.studentFirstName}} {{attendance.studentLastName}}</td>
+      <td *ngFor="let presence of attendance.presences"
+        [ngStyle]="{'background-color': presence.wasPresent ? 'green': 'red'}"></td>
+    </tr>
+  </tbody>
+</table>
