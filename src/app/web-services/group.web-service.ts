@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment';
 import { BaseWebService } from './base.web-service';
 import { User } from '../models/User';
 import { DanceGroup } from '../models/DanceGroup';
+import { SkillLevel } from '../models/SkillLevel';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,10 @@ export class GroupWebService extends BaseWebService {
   getStudentsNotInGroup(groupId: number): Observable<User[]> {
     const url = `${this.url}/${groupId}/students/not-in-group`;
     return this.http.get<User[]>(url);
+  }
+
+  getSkillLevels(): Observable<SkillLevel> {
+    const url = `${this.url}/skill-levels`;
+    return this.http.get<SkillLevel>(url);
   }
 }

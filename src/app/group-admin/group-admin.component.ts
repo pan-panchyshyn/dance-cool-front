@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DanceGroup } from 'src/app/models/DanceGroup';
-import { GroupService } from 'src/app/group-admin/services/group.service';
 
 @Component({
   selector: 'app-group-admin',

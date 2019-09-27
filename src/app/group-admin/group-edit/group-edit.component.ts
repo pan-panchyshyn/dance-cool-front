@@ -4,6 +4,7 @@ import { GroupWebService } from 'src/app/web-services/group.web-service';
 import { GroupService } from '../services/group.service';
 import { User } from 'src/app/models/User';
 import { DanceGroup } from 'src/app/models/DanceGroup';
+import { SkillLevel } from 'src/app/models/SkillLevel';
 
 @Component({
   selector: 'app-group-edit',
@@ -20,6 +21,7 @@ export class GroupEditComponent implements OnInit {
 
   students: User[] = [];
   groupInfo: DanceGroup;
+  skillLevels: SkillLevel[];
 
   ngOnInit() {
     const groupIdSubj = this.groupSyncService.groupIdSubj;
@@ -55,6 +57,10 @@ export class GroupEditComponent implements OnInit {
       groupInfo = data;
       this.groupInfo = groupInfo;
     });
+  }
+
+  private loadSkillLevels(): void {
+    this.groupWebService.getSkillLevels;
   }
 
   openCreateStudentForm() {
