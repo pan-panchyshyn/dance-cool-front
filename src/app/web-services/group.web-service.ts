@@ -39,8 +39,8 @@ export class GroupWebService extends BaseWebService {
     return this.http.get<User[]>(url);
   }
 
-  getSkillLevels(): Observable<SkillLevel> {
+  getSkillLevels(): Observable<SkillLevel[]> {
     const url = `${this.url}/skill-levels`;
-    return this.http.get<SkillLevel>(url);
+    return this.http.get<SkillLevel[]>(url);
   }
 }

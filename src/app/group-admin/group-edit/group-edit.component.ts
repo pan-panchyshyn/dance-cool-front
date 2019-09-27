@@ -38,6 +38,8 @@ export class GroupEditComponent implements OnInit {
       this.loadGroupInfo(groupId);
     });
 
+    this.loadSkillLevels();
+
     this.groupSyncService.onReloadStudent.next();
     this.groupSyncService.addExistingStudentVisibility.next(false);
     this.groupSyncService.createStudentVisibility.next(false);
@@ -60,7 +62,9 @@ export class GroupEditComponent implements OnInit {
   }
 
   private loadSkillLevels(): void {
-    this.groupWebService.getSkillLevels;
+    this.groupWebService
+      .getSkillLevels()
+      .subscribe(data => (this.skillLevels = data));
   }
 
   openCreateStudentForm() {
