@@ -9,6 +9,8 @@ import { GroupAdminComponent } from './group-admin.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { GroupService } from './services/group.service';
+import { GroupEditComponent } from './group-edit/group-edit.component';
+import { GroupAdminRoutingModule } from './group-admin-routing.module';
 
 @NgModule({
   declarations: [
@@ -17,9 +19,10 @@ import { GroupService } from './services/group.service';
     GroupInfoComponent,
     ManagingStudentsComponent,
     AddExistingStudentComponent,
-    CreateStudentComponent
+    CreateStudentComponent,
+    GroupEditComponent
   ],
-  imports: [CommonModule, RouterModule, FormsModule],
+  imports: [CommonModule, RouterModule, FormsModule, GroupAdminRoutingModule],
   exports: [
     GroupAdminComponent,
     GroupListComponent,
