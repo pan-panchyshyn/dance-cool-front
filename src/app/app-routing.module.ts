@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { GuestPageComponent } from './components/guest-page/guest-page.component';
 import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
-  { path: '', component: GuestPageComponent, pathMatch: 'full' },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./guest/guest.module').then(module => module.GuestModule)
+  },
   {
     path: 'admin',
     component: AdminComponent,

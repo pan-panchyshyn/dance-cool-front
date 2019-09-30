@@ -51,7 +51,7 @@ export class UserWebService extends BaseWebService {
     studentId: number,
     groupId: number
   ): Observable<UserGroup> {
-    const url = `${this.url}api/group/user/`;
+    const url = `${this.url}group/user/`;
     const connection: UserGroup = {
       studentId,
       groupId

@@ -5,21 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { GuestPageComponent } from './components/guest-page/guest-page.component';
-import { TittleGuestPageComponent } from './components/guest-page/tittle-guest-page/tittle-guest-page.component';
 import { FormsModule } from '@angular/forms';
 import { GroupAdminModule } from './group-admin/group-admin.module';
 import { AttendanceModule } from './attendance/attendance.module';
 import { AdminComponent } from './components/admin/admin.component';
 import { MaterialModule } from './material.module';
+import { GuestModule } from './guest/guest.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     FooterComponent,
-    GuestPageComponent,
-    TittleGuestPageComponent,
     AdminComponent
   ],
   imports: [
@@ -29,7 +26,8 @@ import { MaterialModule } from './material.module';
     HttpClientModule,
     MaterialModule,
     GroupAdminModule,
-    AttendanceModule
+    AttendanceModule,
+    GuestModule
   ],
   providers: [],
   bootstrap: [AppComponent]
