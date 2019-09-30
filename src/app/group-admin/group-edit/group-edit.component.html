@@ -1,17 +1,56 @@
 <div class="row">
-  <div class="col-7">
+  <div class="col-6">
     <div class="card" *ngIf="groupInfo">
-      <h5 class="card-title"> {{groupInfo.groupDirection}} {{groupInfo.groupLevel}}</h5>
       <div class="card-body">
-        <div class="flex-container">
-          <p>Наставники</p>
-          <ul>
-            <li class="card-text">{{groupInfo.primaryMentor.firstName}} {{groupInfo.primaryMentor.lastName}}</li>
-            <li class="card-text">{{groupInfo.secondaryMentor.firstName}} {{groupInfo.secondaryMentor.lastName}}</li>
-          </ul>
-          <div class="group-actions-container">
-            <button class="btn btn-light" (click)="openCreateStudentForm()">Додати нового студента</button>
-            <button class="btn btn-light" (click)="openAddExistingStudentForm()">Додати студента з іншої групи</button>
+        <div class="input-group mb-3  uk-container-center">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="group-direction">{{groupInfo.groupDirection}}</span>
+          </div>
+          <select class="custom-select" id="groupLevelSelect" disabled="{{ableToEdit}}">
+            <option selected>{{groupInfo.groupLevel}}</option>
+            <option *ngFor="let skillLevel of skillLevels" value="skillLevel.id">{{skillLevel.name}}</option>
+          </select>
+        </div>
+        <div class="input-group mb-3  uk-container-center">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="group-direction">Наставники</span>
+          </div>
+          <select class="custom-select" id="groupLevelSelect" (click)="filterMentors()" disabled="{{ableToEdit}}"
+            (change)="setNewPrimaryMentor($event.target.value)">
+            <option selected>{{groupInfo.primaryMentor.firstName}} {{groupInfo.primaryMentor.lastName}}</option>
+            <option *ngFor="let mentor of mentorsToChoose" value="{{mentor.id}}">
+              {{mentor.firstName}}
+              {{mentor.lastName}}</option>
+          </select>
+          <select class="custom-select" id="groupLevelSelect" (click)="filterMentors()" disabled="{{ableToEdit}}">
+            <option selected>{{groupInfo.secondaryMentor.firstName}} {{groupInfo.secondaryMentor.lastName}}</option>
+            <option *ngFor="let mentor of mentorsToChoose" value="skillLevel.id">{{mentor.firstName}}
+              {{mentor.lastName}}</option>
+            <option value="skillLevel.id">Відсутній</option>
+          </select>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-sm-4 col-md-4">
+              <button class="btn btn-primary" type="button">Редгувати </button>
+            </div>
+            <div class="col-12 col-sm-4 col-md-4">
+              <button class="btn btn-danger" type="button">Відмінити</button>
+            </div>
+            <div class="col-12 col-sm-4 col-md-4">
+              <button class="btn btn-success" type="button">Підтвердити</button>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-6">
+              <button class="btn btn-light" (click)="openCreateStudentForm()">Додати нового студента</button>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+              <button class="btn btn-light" (click)="openAddExistingStudentForm()">Додати студента з іншої
+                групи</button>
+            </div>
           </div>
         </div>
       </div>

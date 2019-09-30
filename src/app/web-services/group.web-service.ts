@@ -43,4 +43,9 @@ export class GroupWebService extends BaseWebService {
     const url = `${this.url}/skill-levels`;
     return this.http.get<SkillLevel[]>(url);
   }
+
+  getMentors(): Observable<User[]> {
+    const url = `${this.url}/mentors`;
+    return this.http.get<User[]>(url);
+  }
 }

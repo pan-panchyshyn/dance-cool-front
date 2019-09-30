@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GroupWebService } from 'src/app/web-services/group.web-service';
 import { GroupService } from '../services/group.service';
@@ -9,8 +9,7 @@ import { SkillLevel } from 'src/app/models/SkillLevel';
 @Component({
   selector: 'app-group-edit',
   templateUrl: './group-edit.component.html',
-  styleUrls: ['./group-edit.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./group-edit.component.css']
 })
 export class GroupEditComponent implements OnInit {
   constructor(
@@ -20,8 +19,13 @@ export class GroupEditComponent implements OnInit {
   ) {}
 
   students: User[] = [];
+  mentors: User[] = [];
+  mentorsToChoose: User[] = [];
   groupInfo: DanceGroup;
+  groupNewInfo: DanceGroup;
   skillLevels: SkillLevel[];
+  isDirty: boolean = this.groupInfo !== this.groupNewInfo;
+  ableToEdit: boolean = false;
 
   ngOnInit() {
     const groupIdSubj = this.groupSyncService.groupIdSubj;
@@ -39,6 +43,7 @@ export class GroupEditComponent implements OnInit {
     });
 
     this.loadSkillLevels();
+    this.loadMentors();
 
     this.groupSyncService.onReloadStudent.next();
     this.groupSyncService.addExistingStudentVisibility.next(false);
@@ -59,6 +64,8 @@ export class GroupEditComponent implements OnInit {
       groupInfo = data;
       this.groupInfo = groupInfo;
     });
+
+    this.groupNewInfo = groupInfo;
   }
 
   private loadSkillLevels(): void {
@@ -66,6 +73,38 @@ export class GroupEditComponent implements OnInit {
       .getSkillLevels()
       .subscribe(data => (this.skillLevels = data));
   }
+
+  private loadMentors(): void {
+    let newMentors: User[] = [];
+    this.groupWebService.getMentors().subscribe(data => {
+      newMentors = data;
+      this.mentors = newMentors;
+    });
+  }
+
+  filterMentors(): void {
+    this.mentorsToChoose = this.mentors.filter(
+      mentor =>
+        mentor.id !== this.groupNewInfo.primaryMentor.id &&
+        mentor.id !== this.groupNewInfo.secondaryMentor.id
+    );
+  }
+
+  setNewPrimaryMentor(newPrimaMentorId: number): void {
+    this.groupNewInfo.primaryMentor = this.mentors.find(
+      mentor => mentor.id === +newPrimaMentorId
+    );
+  }
+
+  setNewSecondaryMentor(newSecMentorId?: number): void {
+    +newSecMentorId > 0
+      ? (this.groupNewInfo.secondaryMentor = this.mentors.find(
+          mentor => mentor.id === +newSecMentorId
+        ))
+      : (this.groupNewInfo.secondaryMentor = null);
+  }
+
+  setNewSkillLevel(): void {}
 
   openCreateStudentForm() {
     this.groupSyncService.createStudentVisibility.next(true);
