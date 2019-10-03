@@ -24,8 +24,8 @@ export class GroupEditComponent implements OnInit {
   groupInfo: DanceGroup;
   groupNewInfo: DanceGroup;
   skillLevels: SkillLevel[];
-  isDirty: boolean = this.groupInfo !== this.groupNewInfo;
-  ableToEdit: boolean = false;
+  isDirty: boolean;
+  canEdit: boolean = false;
 
   ngOnInit() {
     const groupIdSubj = this.groupSyncService.groupIdSubj;
@@ -48,6 +48,8 @@ export class GroupEditComponent implements OnInit {
     this.groupSyncService.onReloadStudent.next();
     this.groupSyncService.addExistingStudentVisibility.next(false);
     this.groupSyncService.createStudentVisibility.next(false);
+
+    this.groupNewInfo = this.groupInfo;
   }
 
   private loadStudents(groupId: number): void {
@@ -63,9 +65,8 @@ export class GroupEditComponent implements OnInit {
     this.groupWebService.getGroupInfo(groupId).subscribe(data => {
       groupInfo = data;
       this.groupInfo = groupInfo;
+      this.groupNewInfo = groupInfo;
     });
-
-    this.groupNewInfo = groupInfo;
   }
 
   private loadSkillLevels(): void {
@@ -82,6 +83,10 @@ export class GroupEditComponent implements OnInit {
     });
   }
 
+  enableEditMode(): void {
+    this.canEdit = true;
+  }
+
   filterMentors(): void {
     this.mentorsToChoose = this.mentors.filter(
       mentor =>
@@ -94,6 +99,7 @@ export class GroupEditComponent implements OnInit {
     this.groupNewInfo.primaryMentor = this.mentors.find(
       mentor => mentor.id === +newPrimaMentorId
     );
+    this.groupSyncService.isGroupEdited.next(true);
   }
 
   setNewSecondaryMentor(newSecMentorId?: number): void {
@@ -102,9 +108,16 @@ export class GroupEditComponent implements OnInit {
           mentor => mentor.id === +newSecMentorId
         ))
       : (this.groupNewInfo.secondaryMentor = null);
+
+    this.groupSyncService.isGroupEdited.next(true);
   }
 
-  setNewSkillLevel(): void {}
+  setNewSkillLevel(newSkillLevelId: number): void {
+    this.groupNewInfo.groupLevel = this.skillLevels.find(
+      level => level.id === +newSkillLevelId
+    );
+    this.groupSyncService.isGroupEdited.next(true);
+  }
 
   openCreateStudentForm() {
     this.groupSyncService.createStudentVisibility.next(true);

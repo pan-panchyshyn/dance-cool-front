@@ -1,9 +1,11 @@
 import { User } from './User';
+import { DanceDirection } from './DanceDirection';
+import { SkillLevel } from './SkillLevel';
 
 export class DanceGroup {
   groupId: number;
-  groupDirection: string;
+  groupDirection: DanceDirection;
+  groupLevel: SkillLevel;
   primaryMentor: User;
   secondaryMentor?: User;
-  groupLevel: string;
 }
