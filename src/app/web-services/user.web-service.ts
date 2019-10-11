@@ -21,10 +21,10 @@ export class UserWebService extends BaseWebService {
     super();
   }
 
-  private url = `${environment.apiUrl}user`;
+  private url = `${environment.apiUrl}`;
 
   addNewUser(newUserModel: NewUserModel): Observable<User> {
-    const url = `${this.url}api/users/`;
+    const url = `${this.url}/users/`;
     return this.http
       .post<User>(url, newUserModel, this.httpOptions)
       .pipe(tap((newUser: User) => this.userId.next(newUser.id)));
@@ -34,7 +34,7 @@ export class UserWebService extends BaseWebService {
     newUser: NewUserModel,
     groupId: number
   ): Observable<User> {
-    const url = `${this.url}api/group/${groupId}/new-user/`;
+    const url = `${this.url}group/${groupId}/new-user/`;
 
     return this.http
       .post<User>(url, newUser, this.httpOptions)
@@ -51,7 +51,7 @@ export class UserWebService extends BaseWebService {
     studentId: number,
     groupId: number
   ): Observable<UserGroup> {
-    const url = `${this.url}api/group/user/`;
+    const url = `${this.url}group/user/`;
     const connection: UserGroup = {
       studentId,
       groupId

@@ -1,0 +1,80 @@
+<div class="row">
+  <div class="col-6">
+    <div class="card" *ngIf="groupInfo">
+      <div class="card-body">
+        <div class="input-group mb-3  uk-container-center">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="group-direction">{{groupInfo.groupDirection}}</span>
+          </div>
+          <select class="custom-select" id="groupLevelSelect" [disabled]="!canEdit">
+            <option selected>{{groupInfo.groupLevel}}</option>
+            <option *ngFor="let skillLevel of skillLevels" value="skillLevel.id">{{skillLevel.name}}</option>
+          </select>
+        </div>
+        <div class="input-group mb-3  uk-container-center">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="group-direction">Наставники</span>
+          </div>
+          <select class="custom-select" id="groupLevelSelect" (click)="filterMentors()" [disabled]="!canEdit"
+            (change)="setNewPrimaryMentor($event.target.value)">
+            <option selected>{{groupInfo.primaryMentor.firstName}} {{groupInfo.primaryMentor.lastName}}</option>
+            <option *ngFor="let mentor of mentorsToChoose" value="{{mentor.id}}">
+              {{mentor.firstName}}
+              {{mentor.lastName}}</option>
+          </select>
+          <select class="custom-select" id="groupLevelSelect" (click)="filterMentors()" [disabled]="!canEdit">
+            <option selected>{{groupInfo.secondaryMentor.firstName}} {{groupInfo.secondaryMentor.lastName}}</option>
+            <option *ngFor="let mentor of mentorsToChoose" value="skillLevel.id">{{mentor.firstName}}
+              {{mentor.lastName}}</option>
+            <option value="skillLevel.id">Відсутній</option>
+          </select>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-sm-4 col-md-4">
+              <button class="btn btn-primary" type="button" (click)="enableEditMode()">Редгувати </button>
+            </div>
+            <div class="col-12 col-sm-4 col-md-4">
+              <button class="btn btn-success" type="button" [disabled]="!isDirty">Підтвердити</button>
+            </div>
+            <div class="col-12 col-sm-4 col-md-4">
+              <button class="btn btn-danger" type="button" [disabled]="!isDirty">Відмінити</button>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-6">
+              <button class="btn btn-light" (click)="openCreateStudentForm()">Додати нового студента</button>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6">
+              <button class="btn btn-light" (click)="openAddExistingStudentForm()">Додати студента з іншої
+                групи</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Ім'я</th>
+          <th scope="col">Прізвище</th>
+          <th scope="col">Номер телефону</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students">
+          <td>{{student.firstName}}</td>
+          <td>{{student.lastName}}</td>
+          <td>{{student.phoneNumber}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-3">
+    <app-managing-students>
+    </app-managing-students>
+  </div>
+</div>

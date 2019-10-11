@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { GroupService } from 'src/app/group-admin/services/group.service';
 import { UserWebService } from 'src/app/web-services/user.web-service';
 import { NewUserModel } from 'src/app/models/NewUserModel';
@@ -6,7 +6,8 @@ import { NewUserModel } from 'src/app/models/NewUserModel';
 @Component({
   selector: 'app-create-student',
   templateUrl: './create-student.component.html',
-  styleUrls: ['./create-student.component.css']
+  styleUrls: ['./create-student.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateStudentComponent implements OnInit {
   groupId: number;

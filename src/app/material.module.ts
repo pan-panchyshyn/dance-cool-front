@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { MatSelectModule } from '@angular/material/select';
 
-@NgModule({ imports: [], exports: [] })
+@NgModule({ imports: [MatSelectModule], exports: [MatSelectModule] })
 export class MaterialModule {}

@@ -4,10 +4,11 @@ import { AttendancePageComponent } from './attendance-page/attendance-page.compo
 import { LessonService } from './services/lesson-sync.service';
 import { AttendanceService } from './services/attendance-sync.service';
 import { FormsModule } from '@angular/forms';
+import { AttendanceRoutingModule } from './attendance-routing.module';
 
 @NgModule({
   declarations: [AttendancePageComponent],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, AttendanceRoutingModule],
   exports: [AttendancePageComponent],
   providers: [LessonService, AttendanceService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
