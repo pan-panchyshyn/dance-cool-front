@@ -1,18 +1,18 @@
-<div class="example-container">
+<form (ngSubmit)="OnSignUp(f)" #f="ngForm" class="example-container">
   <mat-form-field>
-    <input matInput placeholder="Ім'я" type="text">
+    <input matInput placeholder="Ім'я" id="firstName" name="firstName" type="text">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Прізвище" type="text">
+    <input matInput placeholder="Прізвище" id="lastName" name="lastName" type="text">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="E-mail" type="email">
+    <input matInput placeholder="E-mail" id="email" name="email" type="email">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Пароль" type="password">
+    <input matInput placeholder="Пароль" id="password" name="password" type="password">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Підтвердіть Пароль" type="password">
+    <input matInput placeholder="Підтвердіть Пароль" id="confirmPassword" name="confirmPassword" type="password">
   </mat-form-field>
-  <button mat-raised-button color="primary">Зареєструватися</button>
-</div>
+  <button mat-raised-button color="primary" type="submit">Зареєструватися</button>
+</form>
