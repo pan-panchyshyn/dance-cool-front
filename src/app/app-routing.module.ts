@@ -9,6 +9,13 @@ const routes: Routes = [
       import('./guest/guest.module').then(module => module.GuestModule)
   },
   {
+    path: 'auth',
+    loadChildren: () =>
+      import('./authentication/authentication.module').then(
+        module => module.AuthenticationModule
+      )
+  },
+  {
     path: 'admin',
     component: AdminComponent,
     children: [

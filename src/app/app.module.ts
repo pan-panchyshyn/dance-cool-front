@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { GroupAdminModule } from './group-admin/group-admin.module';
 import { AttendanceModule } from './attendance/attendance.module';
 import { AdminComponent } from './components/admin/admin.component';
-import { MaterialModule } from './material.module';
+import { AppMaterialModule } from './app.material.module';
 import { GuestModule } from './guest/guest.module';
 
 @NgModule({
@@ -24,7 +24,7 @@ import { GuestModule } from './guest/guest.module';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    MaterialModule,
+    AppMaterialModule,
     GroupAdminModule,
     AttendanceModule,
     GuestModule
