@@ -1,18 +1,26 @@
 <form (ngSubmit)="OnSignUp(f)" #f="ngForm" class="example-container">
   <mat-form-field>
-    <input matInput placeholder="Ім'я" id="firstName" name="firstName" type="text">
+    <input matInput placeholder="Ім'я" id="firstName" name="firstName" type="text"
+      [(ngModel)]="signUpCredentials.firstName">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Прізвище" id="lastName" name="lastName" type="text">
+    <input matInput placeholder="Прізвище" id="lastName" name="lastName" type="text"
+      [(ngModel)]="signUpCredentials.lastName">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="E-mail" id="email" name="email" type="email">
+    <input matInput placeholder="E-mail" id="email" name="email" type="email" [(ngModel)]="signUpCredentials.email">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Пароль" id="password" name="password" type="password">
+    <input matInput placeholder="Номер Телефону" id="phoneNumber" name="phoneNumber" type="tel"
+      [(ngModel)]="signUpCredentials.phoneNumber">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Підтвердіть Пароль" id="confirmPassword" name="confirmPassword" type="password">
+    <input matInput placeholder="Пароль" id="password" name="password" type="password"
+      [(ngModel)]="signUpCredentials.password">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Підтвердіть Пароль" id="confirmPassword" name="confirmPassword" type="password"
+      [(ngModel)]="passwordConfirmation">
   </mat-form-field>
   <button mat-raised-button color="primary" type="submit">Зареєструватися</button>
 </form>

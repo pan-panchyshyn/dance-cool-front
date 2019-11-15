@@ -5,12 +5,12 @@ import { map, tap } from 'rxjs/operators';
 
 import { BaseWebService } from '../base.web-service';
 import { AuthenticatedUser } from 'src/app/models/Authentication/AuthenticatedUser';
-import { SignUpCredentials } from 'src/app/models/Authentication/SignUpCredentials';
+import { SignInCredentials } from 'src/app/models/Authentication/SignInCredentials';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SignUpWebService extends BaseWebService {
+export class SignInWebService extends BaseWebService {
   public authenticatedUser: BehaviorSubject<
     AuthenticatedUser
   > = new BehaviorSubject<AuthenticatedUser>(null);
@@ -18,14 +18,18 @@ export class SignUpWebService extends BaseWebService {
     super();
   }
 
-  public SignUp(credentials: SignUpCredentials): Observable<AuthenticatedUser> {
-    const url = `${this.url}register`;
+  public LogIn(credentials: SignInCredentials): Observable<AuthenticatedUser> {
+    const url = `${this.url}authorize`;
     return this.http
       .post<AuthenticatedUser>(url, credentials, this.httpOptions)
       .pipe(
-        tap((authenticatedUser: AuthenticatedUser) => {
-          console.log(authenticatedUser);
+        tap((authenticated: AuthenticatedUser) => {
+          console.log(authenticated);
         })
       );
+  }
+
+  private SaveToLocalStorage(authentionData: AuthenticatedUser): void {
+    const expirationDate = new Date().getTime() + authentionData.tokenLifeTime;
   }
 }
