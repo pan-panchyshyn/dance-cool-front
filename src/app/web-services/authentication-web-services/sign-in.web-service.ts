@@ -1,35 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 import { BaseWebService } from '../base.web-service';
-import { AuthenticatedUser } from 'src/app/models/Authentication/AuthenticatedUser';
-import { SignInCredentials } from 'src/app/models/Authentication/SignInCredentials';
+import { AuthenticatedUser } from '../../models/Authentication/AuthenticatedUser';
+import { SignInCredentials } from '../../models/Authentication/SignInCredentials';
+import { AuthenticationWebService } from './authentication.web-service';
+import { Token } from '../../models/Authentication/Token';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SignInWebService extends BaseWebService {
-  public authenticatedUser: BehaviorSubject<
-    AuthenticatedUser
-  > = new BehaviorSubject<AuthenticatedUser>(null);
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private authenticationService: AuthenticationWebService
+  ) {
     super();
   }
 
-  public LogIn(credentials: SignInCredentials): Observable<AuthenticatedUser> {
-    const url = `${this.url}authorize`;
-    return this.http
-      .post<AuthenticatedUser>(url, credentials, this.httpOptions)
-      .pipe(
-        tap((authenticated: AuthenticatedUser) => {
-          console.log(authenticated);
-        })
-      );
-  }
-
-  private SaveToLocalStorage(authentionData: AuthenticatedUser): void {
-    const expirationDate = new Date().getTime() + authentionData.tokenLifeTime;
-  }
+  // public LogIn(credentials: SignInCredentials): Observable<Token> {
+  //   const url = `${this.url}authorize`;
+  //   // return this.http.post<Token>(url, credentials, this.httpOptions).pipe(
+  //   //   tap((token: Token) => {
+  //   //     this.authenticationService.SaveToLocalStorage(token);
+  //   //   })
+  //   // );
+  // }
 }

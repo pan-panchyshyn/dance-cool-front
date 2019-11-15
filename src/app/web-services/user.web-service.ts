@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { environment } from '../../environments/environment';
 import { User } from '../models/User';
 import { BaseWebService } from './base.web-service';
 import { GroupWebService } from './group.web-service';
@@ -19,6 +18,20 @@ export class UserWebService extends BaseWebService {
 
   constructor(private http: HttpClient, private groupService: GroupWebService) {
     super();
+  }
+
+  public GetUserById(userId: number): Observable<User> {
+    const url = `${this.url}/users/${userId}`;
+    return this.http.get<User>(url).pipe(
+      tap(
+        responce => {
+          console.log(responce);
+        },
+        error => {
+          console.error(error);
+        }
+      )
+    );
   }
 
   addNewUser(newUserModel: NewUserModel): Observable<User> {
