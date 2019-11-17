@@ -4,18 +4,18 @@ import { BehaviorSubject, Observable } from "rxjs";
 import { tap } from "rxjs/operators";
 
 import { BaseWebService } from "../base.web-service";
-import { AuthenticatedUser } from "src/app/models/Authentication/AuthenticatedUser";
 import { SignUpCredentials } from "src/app/models/Authentication/SignUpCredentials";
 import { Token } from "src/app/models/Authentication/Token";
 import { AuthenticationWebService } from "./authentication.web-service";
+import { User } from "src/app/models/User";
 
 @Injectable({
   providedIn: "root"
 })
 export class SignUpWebService extends BaseWebService {
-  public authenticatedUser: BehaviorSubject<
-    AuthenticatedUser
-  > = new BehaviorSubject<AuthenticatedUser>(null);
+  public authenticatedUser: BehaviorSubject<User> = new BehaviorSubject<User>(
+    null
+  );
   constructor(
     private http: HttpClient,
     private authenticationService: AuthenticationWebService
