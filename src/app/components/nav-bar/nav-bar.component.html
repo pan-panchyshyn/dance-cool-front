@@ -1,15 +1,21 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink=""><img src="../../assets/lasalsa-logo.png" /></a>
+  <a class="navbar-brand" routerLink=""
+    ><img src="../../assets/lasalsa-logo.png"
+  /></a>
   <button class="navbar-toggler" type="button" (click)="toggleNavbar()">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse show" id="navbarNav" [ngClass]="{ 'show': navbarOpen }">
+  <div
+    class="collapse navbar-collapse show"
+    id="navbarNav"
+    [ngClass]="{ show: navbarOpen }"
+  >
     <ul class=" navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="">Головна</a>
       </li>
       <li class="nav-item ">
-        <a class="nav-link" href="#">Про нас</a>
+        <a class="nav-link" href="#" routerLink="chat">Про нас</a>
       </li>
       <li class="nav-item ">
         <a class="nav-link" href="#">Групи</a>
@@ -23,9 +29,22 @@
       <li class="nav-item ">
         <a class="nav-link" href="#">Контакти</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="admin">Адміністрування</a>
-      </li>
+      <ng-container *ngIf="!isAuthenticated; else AdminLink">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="auth">Реєстрація/Авторизація</a>
+        </li>
+      </ng-container>
+      <ng-template #AdminLink>
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="admin"
+            >{{ authenticatedUser.firstName }}
+            {{ authenticatedUser.lastName }}</a
+          >
+        </li>
+        <li class="nav-item active">
+          <button (click)="LogOut()">Log Out</button>
+        </li>
+      </ng-template>
     </ul>
   </div>
 </nav>

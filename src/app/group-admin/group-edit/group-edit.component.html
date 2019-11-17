@@ -4,10 +4,10 @@
       <div class="card-body">
         <div class="input-group mb-3  uk-container-center">
           <div class="input-group-prepend">
-            <span class="input-group-text" id="group-direction">{{groupInfo.groupDirection}}</span>
+            <span class="input-group-text" id="group-direction">{{groupInfo.groupDirection.name}}</span>
           </div>
           <select class="custom-select" id="groupLevelSelect" [disabled]="!canEdit">
-            <option selected>{{groupInfo.groupLevel}}</option>
+            <option selected>{{groupInfo.groupLevel.name}}</option>
             <option *ngFor="let skillLevel of skillLevels" value="skillLevel.id">{{skillLevel.name}}</option>
           </select>
         </div>

@@ -1,7 +1,7 @@
 <ul class="list-group">
   <li class="list-group-item list-group-item-action" *ngFor="let group of groups">
     <a routerLink="{{group.groupId}}" routerLinkActive="active-link">
-      {{group.groupDirection}}
-      {{group.groupLevel}}
+      {{group.groupDirection.name}}
+      {{group.groupLevel.name}}
     </a></li>
 </ul>
