@@ -3,15 +3,18 @@
     <div class="col-2">
       <ul class="list-group">
         <li class="list-group-item list-group-item-action">
-          <a routerLink="groups">Групи
-          </a></li>
+          <a routerLink="groups">Групи </a>
+        </li>
         <li class="list-group-item list-group-item-action">
-          <a routerLink="attendances">Відвідуваність
-          </a></li>
+          <a routerLink="attendances">Відвідуваність </a>
+        </li>
       </ul>
     </div>
     <div class="col-10">
       <router-outlet></router-outlet>
+    </div>
+    <div>
+      <app-authentication-monitoring></app-authentication-monitoring>
     </div>
   </div>
 </div>

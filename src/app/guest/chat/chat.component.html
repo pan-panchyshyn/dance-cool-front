@@ -1,7 +1,2 @@
 <p>chat works!</p>
-
-<button (click)="start_connection()">
-  <div>
-    <h2>Connect to signalr endpoint</h2>
-  </div>
-</button>
+<p *ngFor="let item of loggedUsers">{{ item }}</p>

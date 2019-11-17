@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 
-import { SignUpCredentials } from "../../models/Authentication/SignUpCredentials";
-import { SignUpWebService } from "../../web-services/authentication-web-services/sign-up.web-service";
+import { SignUpCredentials } from "../../../models/Authentication/SignUpCredentials";
+import { SignUpWebService } from "../../../web-services/authentication-web-services/sign-up.web-service";
 
 @Component({
   selector: "app-sign-up",

@@ -24,6 +24,7 @@ export class SignInWebService extends BaseWebService {
     return this.http.post<Token>(url, credentials, this.httpOptions).pipe(
       tap(
         (token: Token) => {
+          this.authenticationService.token.next(token);
           this.authenticationService.SaveToLocalStorage(token);
         },
         error => console.error(error)

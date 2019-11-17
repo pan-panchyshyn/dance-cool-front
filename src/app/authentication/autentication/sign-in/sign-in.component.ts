@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 
-import { SignInWebService } from "../../web-services/authentication-web-services/sign-in.web-service";
-import { SignInCredentials } from "../../models/Authentication/SignInCredentials";
-import { AuthenticationWebService } from "../../web-services/authentication-web-services/authentication.web-service";
+import { SignInWebService } from "../../../web-services/authentication-web-services/sign-in.web-service";
+import { SignInCredentials } from "../../../models/Authentication/SignInCredentials";
+import { AuthenticationWebService } from "../../../web-services/authentication-web-services/authentication.web-service";
 
 @Component({
   selector: "app-sign-in",
@@ -23,8 +23,6 @@ export class SignInComponent implements OnInit {
   OnSignIn() {
     this.signInWebService.LogIn(this.credentials).subscribe(token => {
       this.authenticationWebService.token.next(token);
-      console.log(this.authenticationWebService.authenticatedUser.value);
-      console.log(this.authenticationWebService.token.value);
     });
   }
 }
