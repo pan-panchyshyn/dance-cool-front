@@ -1,23 +1,22 @@
-import { Component, OnInit } from '@angular/core';
-import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
+import { Component, OnInit } from "@angular/core";
+import { HubConnection, HubConnectionBuilder } from "@aspnet/signalr";
+import { SignalRWebService } from "src/app/web-services/signalR/baseSignalr.web-service";
 
 @Component({
-  selector: 'app-chat',
-  templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  selector: "app-chat",
+  templateUrl: "./chat.component.html",
+  styleUrls: ["./chat.component.css"]
 })
 export class ChatComponent implements OnInit {
-  constructor() {}
+  constructor(private signalRWebService: SignalRWebService) {}
 
   ngOnInit() {}
 
   start_connection() {
-    var con = new HubConnectionBuilder()
-      .withUrl('http://localhost:59993/users-hub')
-      .build();
+    var con = this.signalRWebService.buildConnectionOnHub("users-hub");
 
-    con.on('UserAdded', userModel => {
-      console.log('privet');
+    con.on("UserAdded", userModel => {
+      console.log("la la land");
     });
     con.start();
   }

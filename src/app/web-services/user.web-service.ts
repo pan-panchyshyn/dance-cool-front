@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
-import { Observable, BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, BehaviorSubject } from "rxjs";
+import { tap } from "rxjs/operators";
 
-import { User } from '../models/User';
-import { BaseWebService } from './base.web-service';
-import { GroupWebService } from './group.web-service';
-import { NewUserModel } from '../models/NewUserModel';
-import { UserGroup } from '../models/UserGroup';
+import { User } from "../models/User";
+import { BaseWebService } from "./base.web-service";
+import { GroupWebService } from "./group.web-service";
+import { NewUserModel } from "../models/NewUserModel";
+import { UserGroup } from "../models/UserGroup";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class UserWebService extends BaseWebService {
   userId = new BehaviorSubject<number>(0);
@@ -21,21 +21,12 @@ export class UserWebService extends BaseWebService {
   }
 
   public GetUserById(userId: number): Observable<User> {
-    const url = `${this.url}/users/${userId}`;
-    return this.http.get<User>(url).pipe(
-      tap(
-        responce => {
-          console.log(responce);
-        },
-        error => {
-          console.error(error);
-        }
-      )
-    );
+    const url = `${this.url}users/${userId}`;
+    return this.http.get<User>(url);
   }
 
   addNewUser(newUserModel: NewUserModel): Observable<User> {
-    const url = `${this.url}/users/`;
+    const url = `${this.url}users/`;
     return this.http
       .post<User>(url, newUserModel, this.httpOptions)
       .pipe(tap((newUser: User) => this.userId.next(newUser.id)));
@@ -49,8 +40,8 @@ export class UserWebService extends BaseWebService {
 
     return this.http.post<User>(url, newUser, this.httpOptions).pipe(
       tap(
-        () => console.log('success'),
-        () => console.log('error'),
+        () => console.log("success"),
+        () => console.log("error"),
         () => this.groupService.getGroupStudents(groupId)
       )
     );

@@ -1,10 +1,25 @@
 <form #f="ngForm" class="example-container">
   <mat-form-field>
-    <input matInput placeholder="E-mail" id="email" name="email" type="email" [(ngModel)]="credentials.email">
+    <input
+      matInput
+      placeholder="E-mail"
+      id="email"
+      name="email"
+      type="email"
+      [(ngModel)]="credentials.email"
+    />
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Password" id="password" name="password" type="password"
-      [(ngModel)]="credentials.password">
+    <input
+      matInput
+      placeholder="Password"
+      id="password"
+      name="password"
+      type="password"
+      [(ngModel)]="credentials.password"
+    />
   </mat-form-field>
-  <button mat-raised-button color="primary" (click)="OnSignIn()">Авторизуватися</button>
+  <button mat-raised-button color="primary" (click)="OnSignIn()">
+    Авторизуватися
+  </button>
 </form>

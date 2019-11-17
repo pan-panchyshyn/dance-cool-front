@@ -1,22 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { SignInWebService } from '../../web-services/authentication-web-services/sign-in.web-service';
-import { SignInCredentials } from '../../models/Authentication/SignInCredentials';
+import { Component, OnInit } from "@angular/core";
+
+import { SignInWebService } from "../../web-services/authentication-web-services/sign-in.web-service";
+import { SignInCredentials } from "../../models/Authentication/SignInCredentials";
+import { AuthenticationWebService } from "../../web-services/authentication-web-services/authentication.web-service";
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.css']
+  selector: "app-sign-in",
+  templateUrl: "./sign-in.component.html",
+  styleUrls: ["./sign-in.component.css"]
 })
 export class SignInComponent implements OnInit {
-  // credentials: SignInCredentials = { email: '', password: '' };
-  constructor(private signInWebService: SignInWebService) {}
+  credentials: SignInCredentials = {
+    email: "andrushchenko@mail.com",
+    password: "LaLaLand"
+  };
+  constructor(
+    private signInWebService: SignInWebService,
+    private authenticationWebService: AuthenticationWebService
+  ) {}
 
   ngOnInit() {}
-  // OnSignIn() {
-  //   this.signInWebService.LogIn(this.credentials).subscribe(token => {
-  //     this.signInWebService.authenticatedUser.next(token);
-  //     const expirationTime = new Date().getTime() + authenticated.tokenLifeTime;
-  //     console.log(this.signInWebService.authenticatedUser, expirationTime);
-  //   });
-  // }
+  OnSignIn() {
+    this.signInWebService.LogIn(this.credentials).subscribe(token => {
+      this.authenticationWebService.token.next(token);
+      console.log(this.authenticationWebService.authenticatedUser.value);
+      console.log(this.authenticationWebService.token.value);
+    });
+  }
 }
